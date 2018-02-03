@@ -25,7 +25,6 @@ RUN apt-get install -y build-essential git \
 RUN echo "Downloading Matlab MCR 2017a"
 RUN mkdir /mcr-install && \
     mkdir /opt/mcr
-COPY MCR_R2017a_glnxa64_installer.zip /opt/mcr-install/
 RUN cd /mcr-install && \
     wget -nc http://ssd.mathworks.com/supportfiles/downloads/R2017a/deployment_files/R2017a/installers/glnxa64/MCR_R2017a_glnxa64_installer.zip && \
     cd /mcr-install && \
