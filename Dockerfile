@@ -11,7 +11,7 @@ LABEL Version="2017a"
 ###############################################################################################
 # UPDATE OS AND INSTALL TOOLS
 USER root
-RUN apt-get update --fix-missing
+RUN apt-get update -y --fix-missing
 RUN apt-get install -y build-essential git \
     unzip \
     xorg \
