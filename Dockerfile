@@ -11,17 +11,21 @@ LABEL Version="2017a"
 ###############################################################################################
 # UPDATE OS AND INSTALL TOOLS
 USER root
-RUN apt-get update -y --fix-missing
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y build-essential git \
     unzip \
     xorg \
     wget \
     tree \
-    curl
+    curl \
+    vim
+RUN apt-get upgrade -y
 ###############################################################################################
 
 ###############################################################################################
 # INSTALL MATLAB MCR 2017 A
+USER root
 RUN echo "Downloading Matlab MCR 2017a"
 RUN mkdir /mcr-install && \
     mkdir /opt/mcr
@@ -42,20 +46,17 @@ ENV XAPPLRESDIR /opt/mcr/v92/X11/app-defaults
 
 ###############################################################################################
 # INSTALL VIM
-USER root
-RUN apt-get install -y vim 
-
-# configure environment
+# CONFIGURE ENVIRONMENT
 ENV DEBIAN_FRONTEND noninteractive
 ENV SHELL /bin/bash
 ENV USERNAME murphylab
 ENV UID 1000
 RUN useradd -m -s /bin/bash -N -u $UID $USERNAME
 RUN if [ ! -d /home/$USERNAME/ ]; then mkdir /home/$USERNAME/; fi
-WORKDIR /home/$USERNAME/
 
 # PREPARE IDE
 USER $USERNAME
+WORKDIR /home/$USERNAME/
 RUN git clone https://github.com/icaoberg/vim-as-an-ide.git && mv vim-as-an-ide/vimrc.vim ~/.vimrc && rm -rf vim-as-an-ide
 RUN mkdir ~/.vim && git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 RUN git clone https://github.com/Yggdroot/duoduo.git && mv duoduo/colors ~/.vim/ && rm -rf duoduo
