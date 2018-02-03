@@ -1,6 +1,6 @@
 # docker-matlabmcr2017a
 
-[![Build Status](https://travis-ci.org/icaoberg/docker-matlabmcr2017a.svg?branch=master)](https://travis-ci.org/icaoberg/docker-matlabmcr2017a.svg?branch=master)
+[![Build Status](https://travis-ci.org/icaoberg/docker-matlabmcr2017a.svg?branch=master)](https://travis-ci.org/icaoberg/docker-matlabmcr2017a)
 [![GitHub issues](https://img.shields.io/github/issues/icaoberg/docker-matlabmcr2017a.svg)](https://github.com/icaoberg/docker-matlabmcr2017a/issues)
 [![GitHub forks](https://img.shields.io/github/forks/icaoberg/docker-matlabmcr2017a.svg)](https://github.com/icaoberg/docker-matlabmcr2017a/network)
 [![GitHub stars](https://img.shields.io/github/stars/icaoberg/docker-matlabmcr2017a.svg)](https://github.com/icaoberg/docker-matlabmcr2017a/stargazers)
