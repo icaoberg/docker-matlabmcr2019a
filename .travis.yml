@@ -11,7 +11,7 @@ branches:
     - master
 
 before_install:
-  - docker build -t icaoberg/matlab .
+  - docker build -t murphylab/matlab .
 
 script:
   - docker images
