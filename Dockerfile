@@ -18,6 +18,7 @@ RUN apt-get install -y build-essential git \
     xorg \
     wget \
     tree \
+    pandoc \
     curl \
     vim
 RUN apt-get upgrade -y
