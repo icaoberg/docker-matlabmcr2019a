@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ###############################################################################################
 MAINTAINER Ivan E. Cao-Berg <icaoberg@andrew.cmu.edu>
-LABEL Description="MATLAB MCR"
+LABEL Description="Ubuntu 16.04 + MATLAB MCR 2017a"
 LABEL Vendor="Murphy Lab in the Computational Biology Department at Carnegie Mellon University"
 LABEL Web="http://murphylab.cbd.cmu.edu"
 LABEL Version="2017a"
@@ -41,6 +41,7 @@ RUN cd /mcr-install && \
     rm -rvf mcr-install
     
 # CONFIGURE ENVIRONMENT VARIABLES FOR MCR
+RUN mv -v /opt/mcr/v92/sys/os/glnxa64/libstdc++.so.6 /opt/mcr/v92/sys/os/glnxa64/libstdc++.so.6.old
 ENV LD_LIBRARY_PATH /opt/mcr/v92/runtime/glnxa64:/opt/mcr/v92/bin/glnxa64:/opt/mcr/v92/sys/os/glnxa64
 ENV XAPPLRESDIR /opt/mcr/v92/X11/app-defaults
 ###############################################################################################
