@@ -1,4 +1,4 @@
-FROM ubuntu:latest as intermediate
+FROM ubuntu:16.04 as intermediate
 
 ###############################################################################################
 MAINTAINER Ivan E. Cao-Berg <icaoberg@andrew.cmu.edu>
