@@ -1,11 +1,11 @@
-FROM ubuntu:16.04 as intermediate
+FROM ubuntu:18.04 as intermediate
 
 ###############################################################################################
 MAINTAINER Ivan E. Cao-Berg <icaoberg@andrew.cmu.edu>
-LABEL Description="Ubuntu 16.04 + MATLAB MCR 2017a"
+LABEL Description="Ubuntu 18.04 + MATLAB MCR 2019a"
 LABEL Vendor="Murphy Lab in the Computational Biology Department at Carnegie Mellon University"
 LABEL Web="http://murphylab.cbd.cmu.edu"
-LABEL Version="2017a"
+LABEL Version="2019a"
 ###############################################################################################
 
 ###############################################################################################
@@ -27,14 +27,14 @@ RUN apt-get upgrade -y
 ###############################################################################################
 # INSTALL MATLAB MCR 2017A
 USER root
-RUN echo "Downloading Matlab MCR 2017a"
+RUN echo "Downloading Matlab MCR 2019a"
 RUN mkdir /mcr-install && \
     mkdir /opt/mcr
 RUN cd /mcr-install && \
-    wget -nc http://ssd.mathworks.com/supportfiles/downloads/R2017a/deployment_files/R2017a/installers/glnxa64/MCR_R2017a_glnxa64_installer.zip && \
+    wget -nc http://ssd.mathworks.com/supportfiles/downloads/R2019a/deployment_files/R2019a/installers/glnxa64/MCR_R2019a_glnxa64_installer.zip && \
     cd /mcr-install && \
     echo "Unzipping container" && \
-    unzip -q MCR_R2017a_glnxa64_installer.zip && \
+    unzip -q MCR_R2019a_glnxa64_installer.zip && \
     ./install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
     cd / && \
     echo "Removing temporary files" && \
@@ -42,15 +42,18 @@ RUN cd /mcr-install && \
 ###############################################################################################
 
 ###############################################################################################
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 COPY --from=intermediate /opt/mcr /opt/mcr
 ###############################################################################################
 
 ###############################################################################################
 # CONFIGURE ENVIRONMENT VARIABLES FOR MCR
-RUN mv -v /opt/mcr/v92/sys/os/glnxa64/libstdc++.so.6 /opt/mcr/v92/sys/os/glnxa64/libstdc++.so.6.old
-ENV LD_LIBRARY_PATH /opt/mcr/v92/runtime/glnxa64:/opt/mcr/v92/bin/glnxa64:/opt/mcr/v92/sys/os/glnxa64
-ENV XAPPLRESDIR /opt/mcr/v92/X11/app-defaults
+RUN mv -v /opt/mcr/v95/sys/os/glnxa64/libstdc++.so.6 /opt/mcr/v95/sys/os/glnxa64/libstdc++.so.6.old
+ENV LD_LIBRARY_PATH /opt/mcr/v95/runtime/glnxa64:/opt/mcr/v95/bin/glnxa64:/opt/mcr/v95/sys/os/glnxa64
+ENV XAPPLRESDIR /opt/mcr/v95/X11/app-defaults
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y wget
 ###############################################################################################
 
 ###############################################################################################
