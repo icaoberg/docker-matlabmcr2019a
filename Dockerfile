@@ -1,10 +1,10 @@
 FROM ubuntu:18.04 as intermediate
 
 ###############################################################################################
-MAINTAINER Ivan E. Cao-Berg <icaoberg@andrew.cmu.edu>
+MAINTAINER Ivan E. Cao-Berg <icaoberg@alumni.cmu.edu>
 LABEL Description="Ubuntu 18.04 + MATLAB MCR 2019a"
-LABEL Vendor="Murphy Lab in the Computational Biology Department at Carnegie Mellon University"
-LABEL Web="http://murphylab.cbd.cmu.edu"
+LABEL Vendor="Computational Biology Department at Carnegie Mellon University"
+LABEL Web="http://linus.cbd.cs.cmu.edu"
 LABEL Version="2019a"
 ###############################################################################################
 
