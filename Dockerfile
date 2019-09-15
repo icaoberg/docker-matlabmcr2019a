@@ -31,7 +31,7 @@ RUN echo "Downloading Matlab MCR 2019a"
 RUN mkdir /mcr-install && \
     mkdir /opt/mcr
 RUN cd /mcr-install && \
-    wget -nc https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019a_Update_5_glnxa64.zip && \
+    wget -nc --quiet https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019a_Update_5_glnxa64.zip && \
     cd /mcr-install && \
     echo "Unzipping container" && \
     unzip -q MCR_R2019a_glnxa64_installer.zip && \
