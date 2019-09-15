@@ -32,7 +32,7 @@ RUN cd /mcr-install && \
     wget -nc --quiet https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019a_Update_5_glnxa64.zip && \
     cd /mcr-install && \
     echo "Unzipping container" && \
-    unzip -q MCR_R2019a_glnxa64_installer.zip && \
+    unzip -q MATLAB_Runtime_R2019a_Update_5_glnxa64.zip && \
     ./install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
     cd / && \
     echo "Removing temporary files" && \
@@ -46,9 +46,9 @@ COPY --from=intermediate /opt/mcr /opt/mcr
 
 ###############################################################################################
 # CONFIGURE ENVIRONMENT VARIABLES FOR MCR
-RUN mv -v /opt/mcr/v95/sys/os/glnxa64/libstdc++.so.6 /opt/mcr/v95/sys/os/glnxa64/libstdc++.so.6.old
-ENV LD_LIBRARY_PATH /opt/mcr/v95/runtime/glnxa64:/opt/mcr/v95/bin/glnxa64:/opt/mcr/v95/sys/os/glnxa64
-ENV XAPPLRESDIR /opt/mcr/v95/X11/app-defaults
+RUN mv -v /opt/mcr/v96/sys/os/glnxa64/libstdc++.so.6 /opt/mcr/v96/sys/os/glnxa64/libstdc++.so.6.old
+ENV LD_LIBRARY_PATH /opt/mcr/v96/runtime/glnxa64:/opt/mcr/v96/bin/glnxa64:/opt/mcr/v96/sys/os/glnxa64
+ENV XAPPLRESDIR /opt/mcr/v96/X11/app-defaults
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y wget
